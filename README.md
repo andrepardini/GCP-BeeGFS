@@ -31,3 +31,24 @@ IMPORTANT: To avoid incurring GCP costs, destroy all the infrastructure when you
 terraform destroy
 
 (Type yes to approve the destruction of all resources.)
+
+
+
+
+GCP-BeeGFS/
+│
+├── README.md
+│
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   └── outputs.tf
+│
+├── ml/                     
+│   ├── train.py
+│   └── requirements.txt
+│
+└── scripts/                
+    ├── common_setup.sh
+    ├── mgnt_setup.sh
+    └── storage_setup.sh
