@@ -43,16 +43,4 @@ sudo /opt/beegfs/sbin/beegfs-setup-storage -p "${STORAGE_DIR}" -s 3 -i 101 -m "$
 sudo systemctl start beegfs-storage
 sudo systemctl enable beegfs-storage
 
-# 5. Final step: Configure and mount the client on all nodes
-# This command needs to run on ALL nodes (mgnt, storage) AFTER all daemons are running.
-# It's often best to run this as a final, separate provisioner step in Terraform.
-sudo mkdir -p /mnt/beegfs
-sudo /opt/beegfs/sbin/beegfs-setup-client -m "${BEEGFS_MGMNT_HOST}"
-# beegfs-setup-client auto-generates /etc/beegfs/beegfs-client.conf
-# And then we mount it:
-sudo mount -t beegfs beegfs_nodev /mnt/beegfs
-
-# To make the mount persistent, add to /etc/fstab
-echo "beegfs_nodev /mnt/beegfs beegfs defaults,cfgFile=/etc/beegfs/beegfs-client.conf 0 0" | sudo tee -a /etc/fstab
-
-echo "Storage node setup and client mount complete."
+echo "Storage node daemon setup complete."
