@@ -1,5 +1,5 @@
 # GCP-BeeGFS
-## Accelerating ML Data Loading with a BeeGFS Parallel Filesystem
+## Performance Benchmark: Accelerating ML Training with a BeeGFS Parallel Filesystem
 
 
 ## How to Deploy This Demo on Google Cloud
