@@ -5,8 +5,11 @@
 ## How to Deploy This Demo on Google Cloud
 
 ## Prerequisites:
+
 A Google Cloud Platform (GCP) Account with billing enabled.
+
 Google Cloud SDK installed and configured (gcloud auth login, gcloud config set project YOUR_PROJECT_ID).
+
 Terraform installed.
 
 ## Deployment Steps:
