@@ -17,11 +17,17 @@ set -x
 # This script assumes a secondary disk is mounted at /data for persistent storage.
 # ---
 
-# The internal DNS/hostname of the management node, which will be passed
-# by Terraform as the first argument.
+# The internal DNS/hostname of the management node.
 BEEGFS_MGMNT_HOST=$1
 if [ -z "$BEEGFS_MGMNT_HOST" ]; then
     echo "ERROR: Management host must be provided as the first argument."
+    exit 1
+fi
+
+# The unique BeeGFS storage target ID.
+BEEGFS_TARGET_ID=$2
+if [ -z "$BEEGFS_TARGET_ID" ]; then
+    echo "ERROR: Target ID must be provided as the second argument."
     exit 1
 fi
 
@@ -36,8 +42,9 @@ sudo mkdir -p "${STORAGE_DIR}"
 sudo chown beegfs:beegfs "${STORAGE_DIR}"
 
 # 3. Initialize the storage service
-# It needs to know where its data lives (-p) and which management daemon to register with (-m)
-sudo /opt/beegfs/sbin/beegfs-setup-storage -p "${STORAGE_DIR}" -s 3 -i 101 -m "${BEEGFS_MGMNT_HOST}"
+# It needs to know where its data lives (-p), a unique service ID (-s), a unique target ID (-i),
+# and which management daemon to register with (-m).
+sudo /opt/beegfs/sbin/beegfs-setup-storage -p "${STORAGE_DIR}" -s 3 -i "${BEEGFS_TARGET_ID}" -m "${BEEGFS_MGMNT_HOST}"
 
 # 4. Start and enable the service
 sudo systemctl start beegfs-storage
