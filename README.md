@@ -53,7 +53,10 @@ Once `terraform apply` completes successfully, you can run the ML benchmark. The
 ```bash
 cd .. # Go back to the root GCP-BeeGFS/ directory
 ./test_run.sh
+```
 
+
+#File Structure
 
 ```
 GCP-BeeGFS/
