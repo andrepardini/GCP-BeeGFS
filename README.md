@@ -56,7 +56,7 @@ cd .. # Go back to the root GCP-BeeGFS/ directory
 ```
 
 
-#File Structure
+# File Structure
 
 ```
 GCP-BeeGFS/
