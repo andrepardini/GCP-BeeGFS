@@ -37,8 +37,9 @@ sudo mkdir -p "${META_DIR}"
 sudo chown beegfs:beegfs "${META_DIR}"
 
 # 3. Initialize services
-# The management service stores its data in /var/lib/beegfs/beegfs-mgmtd by default
-sudo /opt/beegfs/sbin/beegfs-setup-mgmtd -p "${META_DIR}"
+# The management service stores its data by default in /var/lib/beegfs/beegfs-mgmtd or specified with -p.
+# Here we're using the same path for both mgmtd and meta for simplicity which is fine for a test.
+sudo /opt/beegfs/sbin/beegfs-setup-mgmtd -p "${META_DIR}" # Point mgmtd data to /data
 # The metadata service needs to know where its data lives and which management daemon to register with
 sudo /opt/beegfs/sbin/beegfs-setup-meta -p "${META_DIR}" -s 2 -m "${BEEGFS_MGMNT_HOST}"
 
